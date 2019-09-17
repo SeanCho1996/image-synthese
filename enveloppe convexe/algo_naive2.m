@@ -1,5 +1,5 @@
 % intialize randomly 5 points
-n = 5;
+n = 8;
 points = round(rand(n, 2)*10);
 % points = [0 0; 1 3; 4 3; 2 2];
 
