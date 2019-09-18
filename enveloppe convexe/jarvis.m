@@ -2,8 +2,8 @@ clc
 clear
 
 % intialize randomly 5 points
-n = 5;
-points = rand(n, 2)*10;
+n = 30;
+points = rand(n, 2)*100;
 p_index = 1:n;
 
 % draw points
@@ -23,39 +23,32 @@ for i = 1:size(r_index,2)
     angles = [angles, angle2];
 end
 [max_ang, index_max] = max(angles);
-plot([p_left(1), points(r_index(index_max),1)], [p_left(2), points(r_index(index_max),2)], 'y')
+% plot([p_left(1), points(r_index(index_max),1)], [p_left(2), points(r_index(index_max),2)], 'y')
 
 new_points = [p_left(1,:); points(r_index(index_max),:)];
+hull = new_points;
 r_index = setdiff(p_index, [index_left,r_index(index_max)]);
 new_points = [new_points; points(r_index,:)];
 ind_ancient = 1;
 ind_current = 2;
+max_angle = 0;
 angles = [];
 for i = 2:n
     for j = 1:n
-        angle1 = atand((new_points(ind_current, 2)-new_points(ind_ancient,2))/(new_points(ind_current, 1)-new_points(ind_ancient,1)));
-        angle2 = atand((new_points(j, 2)-new_points(ind_current,2))/(new_points(j, 1)-new_points(ind_current,1)));
-        if angle1 < 0 && angle2 <0
-            angle = 180+abs(angle1)-abs(angle2);
-        elseif  angle1 < 0 && angle2 > 0
-            angle = abs(angle1) + angle2;
-        else
-            angle = abs(angle1-angle2);
+        temp_angle = cal_angle(hull(ind_ancient,:),hull(ind_current,:),new_points(j,:));
+        if temp_angle ~= 180 && temp_angle>max_angle 
+            max_angle = temp_angle;
+            i = j;
+            hull(ind_current+1,:) = new_points(j,:);
         end
-        if angle==180
-            angle = 0;
-%         elseif angle > 180
-%             angle = 360-angle;
-        end
-        angles = [angles, angle];
     end
-    [max_ang, index_max] = max(angles);
-    plot([new_points(ind_current, 1), new_points(index_max,1)], [new_points(ind_current, 2), new_points(index_max,2)], 'y');
-    ind_ancient = ind_current;
-    ind_current = index_max;   
-    if ind_current == 1
+    ind_ancient = size(hull,1)-1;
+    ind_current = size(hull,1);
+    if i == 1
         break;
     end
-    angles = [];
+    max_angle = 0;
 end
+plot(hull(:,1), hull(:,2),'g-')
+
 
