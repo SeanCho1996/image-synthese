@@ -1,8 +1,9 @@
 # image-synthese
 course &lt;synthèse de l'image> of FISE3 TSE
 
-## Enveloppe convexe: two naive algos, the first one is simple but complicated to realize and the second one is taught by Mr.Denis with a higher speed and easier to realize, added advanced algo Jarvis and Graham, for more information, please consult the lecture of Mr.Denis. </br>
-<凸包算法：包含极边法，Jarvis算法以及graham算法>(https://blog.csdn.net/bone_ace/article/details/46239187)
+## Enveloppe convexe: 
+Two naive algos, the first one is simple but complicated to realize and the second one is taught by Mr.Denis with a higher speed and easier to realize, added advanced algo Jarvis and Graham, for more information, please consult the lecture of Mr.Denis. </br>
+[凸包算法：包含极边法，Jarvis算法以及graham算法](https://blog.csdn.net/bone_ace/article/details/46239187)
 
 ### 极边法（暴力法）
 点阵中每两点确定一条直线，遍历剩下的所有点判断这些点是否在已确定直线的同侧，所以遍历两点确定直线需要两次循环，O（n²），再遍历第三个点又需要一次循环，所以总O（n^3)
