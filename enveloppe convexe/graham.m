@@ -1,7 +1,7 @@
 clc
 clear
 
-% intialize randomly 5 points
+% intialize randomly 30 points
 n = 30;
 points = rand(n, 2)*100;
 p_index = 1:n;
