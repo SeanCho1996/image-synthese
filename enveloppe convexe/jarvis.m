@@ -1,7 +1,7 @@
 clc
 clear
 
-% intialize randomly 5 points
+% intialize randomly 30 points
 n = 30;
 points = rand(n, 2)*100;
 p_index = 1:n;
@@ -25,8 +25,9 @@ end
 [max_ang, index_max] = max(angles);
 % plot([p_left(1), points(r_index(index_max),1)], [p_left(2), points(r_index(index_max),2)], 'y')
 
+% re-order all points, set a new memory for the convexe points
 new_points = [p_left(1,:); points(r_index(index_max),:)];
-hull = new_points;
+hull = new_points; % memory to store convexe points
 r_index = setdiff(p_index, [index_left,r_index(index_max)]);
 new_points = [new_points; points(r_index,:)];
 ind_ancient = 1;
@@ -38,7 +39,7 @@ for i = 2:n
         temp_angle = cal_angle(hull(ind_ancient,:),hull(ind_current,:),new_points(j,:));
         if temp_angle ~= 180 && temp_angle>max_angle 
             max_angle = temp_angle;
-            i = j;
+            i = j; % 注意这里改变了循环次数，否则复杂度应该为n^2
             hull(ind_current+1,:) = new_points(j,:);
         end
     end
