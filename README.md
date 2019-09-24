@@ -17,5 +17,5 @@ Two naive algos, the first one is simple but complicated to realize and the seco
 ## Plus petit cercle englobant
 [最小包络圆](https://blog.csdn.net/skytruine/article/details/60882966)
 
-### 暴力法
+### 加性随机法
 在点阵中取前两个点，做过这两个点的最小圆，然后从第三个点开始，判断当前点是否处于前面所有点的最小包络圆内，这一过程应用到点阵及一点确定最小圆，点阵及两点确定最小圆，以及三点确定一个圆，细节请参考各子函数。
