@@ -1,0 +1,10 @@
+function angle = cal_angle(p1,p2,p3)
+a2 = (p1(1)-p2(1))*(p1(1)-p2(1))+(p1(2)-p2(2))*(p1(2)-p2(2));
+b2 = (p3(1)-p2(1))*(p3(1)-p2(1))+(p3(2)-p2(2))*(p3(2)-p2(2));
+c2 = (p1(1)-p3(1))*(p1(1)-p3(1))+(p1(2)-p3(2))*(p1(2)-p3(2));
+a = sqrt(a2);
+b = sqrt(b2);
+c = sqrt(c2);
+pos = (a2+b2-c2)/(2*a*b);   
+angle_temp = acos(pos);         
+angle = angle_temp*180/pi;
